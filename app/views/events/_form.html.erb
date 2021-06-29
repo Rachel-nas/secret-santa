@@ -1,0 +1,9 @@
+<%= simple_form_for @event do |f| %>
+  <%= f.input :event_date, placeholder: 'Date of your Secret Santa event' %>
+  <%= f.input :gift_amount, placeholder: 'Amount to spend' %>
+
+  <% button_text = @event.new_record? ? "Create my event" : "Edit my event" %>
+  <%= f.submit button_text, class: "btn btn-success border mt-3" %>
+<% end%>
+
+<p><%= link_to "Back to homepage", root_path, class:"btn btn-primary" %></p>

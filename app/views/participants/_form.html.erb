@@ -1,0 +1,8 @@
+<%= simple_form_for [@event, @participant] do |f| %>
+  <%= f.input :name, placeholder: 'Add a name' %>
+  <%= f.input :email, placeholder: 'Add an email' %>
+
+  <%= f.submit "Add participant", class: "btn btn-success border mt-3" %>
+<% end%>
+
+<%= link_to "Back to homepage", root_path, class:"btn btn-primary" %>

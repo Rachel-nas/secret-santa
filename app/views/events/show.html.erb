@@ -1,0 +1,19 @@
+<div>
+  <h2>Here your Secret Santa event details</h2>
+  <p>Date of your event: <%= @event.event_date %></p>
+  <p>Gift's amount: <%= @event.gift_amount %></p>
+</div>
+
+<div>
+  <h2>Your Secret Santa list</h2>
+  <% @participants.each do |participant| %>
+    <p>Participant ID: <%= participant.user_id %></p>
+    <p>Participant name: <%= participant.name %></p>
+    <p>Participant email: <%= participant.email %></p>
+    <hr class="ligne">
+  <% end %>
+</div>
+
+<%= link_to "Back to homepage", root_path, class:"btn btn-primary" %>
+<%= link_to "Add participants", new_event_participant_path(@event), class:"btn btn-success" %>
+<%= link_to "Send participants' email", "#", class:"btn btn-secondary" %>

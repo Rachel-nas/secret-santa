@@ -8,9 +8,20 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="logo" href="<%= image_url("gift.jpg") %>">
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'shared/navbar' %>
+    <div class='global-container'>
+      <%= yield %>
+    </div>
+    <%# <%= render 'shared/flashes' %>
+    <%# <%= render 'shared/footer' %>
+
   </body>
 </html>
