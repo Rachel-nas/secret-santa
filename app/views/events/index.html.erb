@@ -1,0 +1,3 @@
+<% @events.each do |event| %>
+  <%= link_to "your event number #{event.id}", event_path(event.id) %><br/>
+<% end %>

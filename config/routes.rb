@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   devise_for :users
 
-  resources :events, only: [:new, :create, :edit, :update, :show, :destroy] do
+  resources :events do
     resources :participants
   end
 end

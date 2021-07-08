@@ -29,6 +29,19 @@ class ParticipantsController < ApplicationController
     @participant.user = current_user
   end
 
+  def random_participant
+    #Create an array (or use .map)
+    @participants = []
+    # Select all participants and Retrive ids from params and store them in the array
+    @participants << Participant.all(params[:participant_id])
+    # [].shuffle and for each participant, assign him the id of another participant
+    @participants.each do |participant|
+      if participant =! @participants.sample
+        # send email (participant_allocation)
+      end
+    end
+  end
+
   private
 
   def participant_params
