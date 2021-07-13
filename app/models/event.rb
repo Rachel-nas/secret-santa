@@ -5,4 +5,5 @@ class Event < ApplicationRecord
 
   validates :event_date, presence: true
   validates :gift_amount, presence: true, numericality: true
+  validates_associated :participants
 end
