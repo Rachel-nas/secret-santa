@@ -24,3 +24,15 @@
 <% end%>
 
 <p><%= link_to "Back to homepage", root_path, class:"btn btn-primary" %></p>
+
+<%= simple_form_for @event do |f| %>
+  <%= f.input :event_date %>
+  <%= f.input :gift_amount %>
+  <%= f.submit 'Save' %>
+
+  <%= f.abyme_for(:participants) do |abyme| %>
+    <%= abyme.records %>
+    <%= abyme.new_records %>
+    <%= add_associated_record %>
+  <% end %>
+<% end %>
