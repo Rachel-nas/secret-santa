@@ -1,38 +1,15 @@
 <%= simple_form_for @event do |f| %>
-  <div class="form-group">
-    <%= f.input :event_date, placeholder: 'Date of your Secret Santa event' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.input :gift_amount, placeholder: 'Amount to spend' %>
-  </div>
-
-  <%= simple_fields_for :participants do |p| %>
-    <div class="row">
-      <div class="col">
-        <%= p.input :name, placeholder: "Participant's name" %>
-      </div>
-      <div class="col">
-        <%= p.input :email, placeholder: "Participant's email" %>
-      </div>
-    </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= f.submit "Create my event", class: "btn btn-success border mt-3" %>
-  </div>
-<% end%>
-
-<p><%= link_to "Back to homepage", root_path, class:"btn btn-primary" %></p>
-
-<%= simple_form_for @event do |f| %>
   <%= f.input :event_date %>
-  <%= f.input :gift_amount %>
-  <%= f.submit 'Save' %>
+  <%= f.input :gift_amount, placeholder: 'Amount to spend' %>
 
   <%= f.abyme_for(:participants) do |abyme| %>
-    <%= abyme.records %>
-    <%= abyme.new_records %>
-    <%= add_associated_record %>
+    <div class="form-group">
+      <%= abyme.records %>
+      <%= abyme.new_records %>
+      <%= add_associated_record %>
+    </div>
   <% end %>
+  <%= f.submit "Create my event", class: "btn btn-success border mt-3" %>
 <% end %>
+
+<p><%= link_to "Back to homepage", root_path, class:"btn btn-primary" %></p>

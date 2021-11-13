@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col">
+    <%= f.input :name, placeholder: "Participant's name" %>
+  </div>
+  <div class="col">
+    <%= f.input :email, placeholder: "Participant's email" %>
+  </div>
+<%= f.hidden_field :_destroy %>
+
+<%= remove_associated_record(tag: :div) do %>
+  <i class="fas fa-trash"></i>
+<% end %>

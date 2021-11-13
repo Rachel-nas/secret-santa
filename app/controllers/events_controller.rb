@@ -18,12 +18,27 @@ class EventsController < ApplicationController
     @event = current_user.events.new event_params
 
     if @event.save
-      unless params["participants"].empty?
-        Participant.create!(name: params["participants"][:name], email: params["participants"][:email], event: @event)
-      end
+      # unless params["participants"].try(:empty?)
+      #   Participant.create!(name: params["participants"][:name], email: params["participants"][:email], event: @event)
+      # end
       redirect_to @event
     else
       render :new
+    end
+  end
+
+  def show
+    @event = Event.find(params[:id])
+    @participants = @event.participants
+    @event.user = current_user
+    arr = @participants
+    arrdup = arr.dup
+    @santa = {}
+    arr.each do |participant|
+      target = (arrdup - [participant]).sample
+      @santa[participant] = target
+      # arrdup.delete(target)
+      arrdup = arrdup - [target]
     end
   end
 
@@ -37,32 +52,16 @@ class EventsController < ApplicationController
     redirect_to event_path(@event)
   end
 
-  def show
-    @event = Event.find(params[:id])
-    @participants = @event.participants
-    @event.user = current_user
-  end
-
-  # def ramdom(event_id)
-  #   current_event = Event.find(params[:event_id])
-  #   pparticipants = current_event.participants
-  #   participants.each do | partipant| 
-  #     if (partipant.assign_participant === nil) {
-  #       partipants_length = event.participants.length 
-  #       partipant.assign_participant.shuffle
-  #     else { return }
-  #   end 
-  # end
 
   private
 
   def event_params
-    params.require(:event).permit(:gift_amount, :event_date, participants_attributes: [:name, :email])
+    params.require(:event).permit(
+      :gift_amount, :event_date, participants_attributes: [
+        :id, :name, :email, :_destroy
+      ]
+    )
   end
-
-  # def participant_params
-  #   params.require(:participant).permit(:secre)
-  # end
 
   def set_event
     @event = Event.find(params[:id])
